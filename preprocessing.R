@@ -1,3 +1,9 @@
+### Author Information #####
+### Coded by Rischan Mafrur ###
+### 01/01/2015 ###
+### For Thesis Purpose ###
+### Language : R ###
+### Dataset : Private Data ###
 
 #Function for loading data
 f_load_data <- function(path){
