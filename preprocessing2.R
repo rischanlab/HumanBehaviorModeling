@@ -1,3 +1,9 @@
+### Author : Rischan Mafrur ###
+### 01/01/2015 ###
+### This code is for thesis purpose ###
+### Unsupervised Activity Recognition based on unlabled data ###
+### Lanugage : R language ####
+
 #preprocessing 2
 
 
