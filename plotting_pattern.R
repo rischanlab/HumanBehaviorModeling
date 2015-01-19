@@ -1,4 +1,11 @@
 
+### Author Information #####
+### Coded by Rischan Mafrur ###
+### 01/01/2015 ###
+### For Thesis Purpose ###
+### Language : R ###
+### Dataset : Private Data ###
+
 setwd("D:/DATA/output2")
 file_list <- list.files()
 
