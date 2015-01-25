@@ -24,12 +24,12 @@ head(df)
 #install.packages("dplyr")
 library(dplyr)
 
-df %>%
-  group_by(time) %>% 
-  summarise(X=X[1], value1=toString(value1)) %>%
-  head()
+new_df <- df %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
+df <- new_df[c(1,2,5,3,4)]
+View(df)
 
 
+head(df)
 ## round time to nearest hour
 df$time <- round(as.POSIXct(df$time), units="hours")
 ## remove weekdays
