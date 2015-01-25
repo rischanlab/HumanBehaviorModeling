@@ -19,6 +19,15 @@ list.files()
 data <- read.csv("ENFP_0719.csv")
 df <- data
 head(df)
+df <- df[c(2,3,4,5,6)]
+
+#removing duplicate data
+remove_duplicate <- function(data){
+  return (data[!duplicated(data),])
+}
+
+#In this data still contain any duplicate data, so we need to remove dublicate data again
+df <- remove_duplicate(df)
 
 #Aggregate values in the same time (minutes)
 #install.packages("dplyr")
