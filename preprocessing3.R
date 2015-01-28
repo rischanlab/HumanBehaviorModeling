@@ -40,12 +40,12 @@ f_preprocessing3 <- function(file){
   
 }
 
-file_list <- list.files("/Volumes/RISCHAN/Dropbox/thesis/PROJECT/data/output1", full.names = TRUE)
+file_list <- list.files("/Volumes/RISCHAN/Dropbox/thesis/PROJECT/data/output2", full.names = TRUE)
 for (file in file_list){
   file_proc <- f_preprocessing3(file)
   cat(sprintf("Storing data %s to csv file.......",file))
   cat("\n")
-  new_path <- gsub('output1', 'output3', file)
+  new_path <- gsub('output2', 'output3', file)
   write.csv(file_proc, sprintf("%s",new_path))
 }
 
