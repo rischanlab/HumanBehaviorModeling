@@ -24,7 +24,7 @@ remove_duplicate <- function(data){
 }
 
 
-f_df_wifi <- function(file){
+f_df_wifi <- function(df_wifi){
   library(dplyr)
   new_df_wifi <- df_wifi %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
   df_wifi <- new_df_wifi[c(1,2,5,3,4)]
@@ -32,7 +32,7 @@ f_df_wifi <- function(file){
   return (df_wifi)
 }
 
-f_df_screen <- function(file){
+f_df_screen <- function(df_screen){
   library(dplyr)
   new_df_screen <- df_screen %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
   df_screen <- new_df_screen[c(1,2,5,3,4)]
@@ -40,7 +40,7 @@ f_df_screen <- function(file){
   return (df_screen)
 }
 
-f_df_bluetooth <- function(file){
+f_df_bluetooth <- function(df_bluetooth){
   library(dplyr)
   new_df_bluetooth <- df_bluetooth %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
   df_bluetooth <- new_df_bluetooth[c(1,2,5,3,4)]
@@ -50,42 +50,9 @@ f_df_bluetooth <- function(file){
 }
 
 
-f_df_location <- function(file){
-  library(dplyr)
-  new_df_location <- df_location %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-  df_location <- new_df_location[c(1,2,5,3,4)]
-  
-  return (df_location)
-}
 
 
-f_df_battery <- function(file){
-  library(dplyr)
-  new_df_battery <- df_battery %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-  df_battery <- new_df_battery[c(1,2,5,3,4)]
-  
-  return (df_battery)
-}
-
-
-f_df_sms <- function(file){
-  library(dplyr)
-  new_df_sms <- df_sms %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-  df_sms <- new_df_sms[c(1,2,5,3,4)]
-  
-  return (df_sms)
-}
-
-
-f_df_call <- function(file){
-  library(dplyr)
-  new_df_call <- df_call %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-  df_call <- new_df_call[c(1,2,5,3,4)]
-  
-  return (df_call)
-}
-
-f_df_activity <- function(file){
+f_df_activity <- function(df_activity){
   library(dplyr)
   new_df_activity <- df_activity %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
   df_activity <- new_df_activity[c(1,2,5,3,4)]
@@ -93,7 +60,7 @@ f_df_activity <- function(file){
   return (df_activity)
 }
 
-f_df_runapps <- function(file){
+f_df_runapps <- function(df_runapps){
   library(dplyr)
   new_df_runapps <- df_runapps %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
   df_runapps <- new_df_runapps[c(1,2,5,3,4)]
@@ -128,7 +95,9 @@ f_preprocessing3 <- function(file){
   
   
   df_wifi <- subset(df, df$type=="wifi")
+  df_wifi <- df[!(is.na(df_wifi$value1) | df_wifi$value1==""), ]
   df_wifi <- f_df_wifi(df_wifi)
+
   
   df_screen <- subset(df, df$type=="screen")
   df_screen <- f_df_screen(df_screen)
@@ -143,16 +112,12 @@ f_preprocessing3 <- function(file){
   df_runapps <- f_df_runapps(df_runapps)
   
   df_battery <- subset(df, df$type=="battery")
-  df_battery <- f_df_battery(df_battery)
   
   df_location <- subset(df, df$type=="location")
-  df_location <- f_df_location(df_location)
   
   df_call <- subset(df, df$type=="call")
-  df_call <- f_df_call(df_call)
   
   df_sms <- subset(df, df$type=="sms")
-  df_sms <- f_df_sms(df_sms)
   
   df <- NULL
   df <- rbind(df_activity,df_battery,df_bluetooth,df_call,df_location,df_runapps,df_screen,df_sms,df_wifi)
@@ -181,89 +146,43 @@ for (file in file_list){
   cat(sprintf("Storing data %s to csv file.......",file))
   cat("\n")
   new_path <- gsub('output2', 'output3', file)
-  write.csv(file_proc, sprintf("%s",new_path))
+  write.csv(file_proc, sprintf("%s",new_path),row.names=FALSE)
 }
 
 
-
-# 
 # # 
-setwd("D:/DATA/output2")
-data <- read.csv("ENTJ_6454.csv")
-df <- data
-#head(df)
-df <- df[c(2,3,4,5,6)]
-#removing duplicated data
-df <- remove_duplicate(df)
-
-df_wifi <- subset(df, df$type=="wifi")
-df_wifi <- f_df_wifi(df_wifi)
-
-df_screen <- subset(df, df$type=="screen")
-df_screen <- f_df_screen(df_screen)
-
-df_bluetooth <- subset(df, df$type=="bluetooth")
-df_bluetooth <- f_df_bluetooth(df_bluetooth)
-
-df_activity <- subset(df, df$type=="activity")
-df_activity <- f_df_activity(df_activity)
-
-df_runapps <- subset(df, df$type=="runapps")
-df_runapps <- f_df_runapps(df_runapps)
-
-df_battery <- subset(df, df$type=="battery")
-df_battery <- f_df_battery(df_battery)
-
-df_location <- subset(df, df$type=="location")
-df_location <- f_df_location(df_location)
-
-df_call <- subset(df, df$type=="call")
-df_call <- f_df_call(df_call)
-
-df_sms <- subset(df, df$type=="sms")
-df_sms <- f_df_sms(df_sms)
-
-# #Aggregate values in the same time (minutes)
-# library(dplyr)
-# 
+# # # 
+# # # 
+# setwd("D:/DATA/output2")
+# df <- read.csv("ENFP_0719.csv")
+# #head(df)
+# df <- df[c(2,3,4,5,6)]
+# #removing duplicated data
+# df <- remove_duplicate(df)
 # 
 # df_wifi <- subset(df, df$type=="wifi")
+# df_wifi <- f_df_wifi(df_wifi)
 # 
-# new_df_wifi <- df_wifi %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-# df_wifi <- new_df_wifi[c(1,2,5,3,4)]
 # 
 # df_screen <- subset(df, df$type=="screen")
-# new_df_screen <- df_screen %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-# df_screen <- new_df_screen[c(1,2,5,3,4)]
+# df_screen <- f_df_screen(df_screen)
 # 
 # df_bluetooth <- subset(df, df$type=="bluetooth")
-# new_df_bluetooth <- df_bluetooth %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-# df_bluetooth <- new_df_bluetooth[c(1,2,5,3,4)]
-# df_bluetooth <- df_bluetooth[-which(df_bluetooth$value1 == "NULL"), ]
+# df_bluetooth <- f_df_bluetooth(df_bluetooth)
 # 
 # df_activity <- subset(df, df$type=="activity")
-# new_df_activity <- df_activity %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-# df_activity <- new_df_activity[c(1,2,5,3,4)]
+# df_activity <- f_df_activity(df_activity)
 # 
 # df_runapps <- subset(df, df$type=="runapps")
-# new_df_runapps <- df_runapps %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-# df_runapps <- new_df_runapps[c(1,2,5,3,4)]
+# df_runapps <- f_df_runapps(df_runapps)
 # 
 # df_battery <- subset(df, df$type=="battery")
-# new_df_battery <- df_battery %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-# df_battery <- new_df_battery[c(1,2,5,3,4)]
 # 
 # df_location <- subset(df, df$type=="location")
-# new_df_location <- df_location %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-# df_location <- new_df_location[c(1,2,5,3,4)]
 # 
 # df_call <- subset(df, df$type=="call")
-# new_df_call <- df_call %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-# df_call <- new_df_call[c(1,2,5,3,4)]
 # 
 # df_sms <- subset(df, df$type=="sms")
-# new_df_sms <- df_sms %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
-# df_sms <- new_df_sms[c(1,2,5,3,4)]
 # 
 # df <- NULL
 # df <- rbind(df_activity,df_battery,df_bluetooth,df_call,df_location,df_runapps,df_screen,df_sms,df_wifi)
@@ -275,15 +194,14 @@ df_sms <- f_df_sms(df_sms)
 # 
 # ## round time to nearest hour
 # df$HP <- format(round(as.POSIXct(df$time), units="hours"),"%H:%M")
-# 
 # df$Weekday <- weekdays(as.Date(df$time))
 # 
 # df <- df[,c(1,7,6,2,3)]
 # names(df) <- c("Timestamp","Weekday","HP","Sensor Name","Sensor Value")
 # 
-# View(df)
-
-
+# write.csv(df, "data.csv",row.names=FALSE)
+# 
+# head(df)
 
 # round.POSIXct <- function(x, units = c("mins", "5 mins", "10 mins", "15 mins", "quarter hours", "30 mins", "half hours", "hours")){
 #   if(is.numeric(units)) units <- as.character(units)

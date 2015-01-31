@@ -160,7 +160,7 @@ f_wifi <- function(d_wifi){
   d_wifi$value2 <- as.character(d_wifi$value2)
   d_wifi$value3 <- as.character(d_wifi$value3)
   d_wifi$time <- as.character(d_wifi$time)
-  d_wifi <- d_wifi[-which(d_wifi$value1 == ""), ]
+  #d_wifi <- d_wifi[-which(d_wifi$value1 == ""), ]
   #library(dplyr)
   #Aggregate values in the same time (minutes)
   #d_wifi1 <- d_wifi %>% group_by(d_wifi$time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
@@ -169,6 +169,7 @@ f_wifi <- function(d_wifi){
   return (d_wifi)
   
 }
+
 
 
 
