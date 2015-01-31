@@ -83,6 +83,18 @@ f_location <- function(d_location){
   d_location$value2 <- as.character(d_location$value2)
   d_location$value3 <- as.character(d_location$value3)
   d_location$time <- as.character(d_location$time)
+  mydf <- d_location
+  mydf$value1 <- as.numeric(mydf$value1)
+  mydf$value2 <- as.numeric(mydf$value2)
+  
+  library(dplyr)
+  d_location <- select(mydf, -type, -value3) %>%
+                mutate(movement = ifelse(value1 == lag(value1) & value2 == lag(value2), "same",
+                             ifelse((abs(value1 - lag(value1)) > 0.0001 & abs(value1 - lag(value1)) < 0.0005) &
+                                      (abs(value2 - lag(value2)) > 0.0001 & abs(value2 - lag(value2)) < 0.0005), "little", "long")))
+  d_location <- na.omit(d_location)
+  d_location <- d_location[,c(1,4,2,3)]
+  names(d_location) <-c("time","value1","value2","value3")
   
   return (d_location)
   
@@ -249,41 +261,44 @@ for (file in file_list){
 # bluetooth <- new_bluetooth[c(1,2,5,3,4)]
 # 
 # 
-# # 
-# setwd("D:/DATA/output/ENFP_0719")
-# d_activity <- read.csv("d_activity.csv")
-# d_battery <- read.csv("d_battery.csv")
-# d_bluetooth <- read.csv("d_bluetooth.csv")
-# d_call <- read.csv("d_call.csv")
-# d_location <- read.csv("d_location.csv")
-# d_runapps <- read.csv("d_runapps.csv")
-# d_screen <- read.csv("d_screen.csv")
-# #d_search <- read.csv("d_search.csv")
-# d_sms <- read.csv("d_sms.csv")
-# d_wifi <- read.csv("d_wifi.csv")
 # 
-# df_activity <- f_activity(d_activity)
-# df_battery <- f_battery(d_battery)
-# df_bluetooth <- f_bluetooth(d_bluetooth)
-# df_call <- f_call(d_call)
-# df_location <- f_location(d_location)
-# df_runapps <- f_runapps(d_runapps)
-# df_screen <- f_screen(d_screen)
-# df_sms <- f_sms(d_sms)
-# df_wifi <- f_wifi(d_wifi)
-# 
-# df_tmp <- rbind(df_activity,df_battery,df_bluetooth,df_call,df_location,df_runapps,df_screen,df_sms,df_wifi)
-# 
-# df_tmp$time2 <- as.Date(df_tmp$time)
-# new_df <- subset(df_tmp, df_tmp$time2 >= "2014-07-01" & df_tmp$time2 <= "2014-08-30")
-# 
-# df <- new_df[,-6]
-# df_sort <- df[order(df$time),]
-# 
-# head(df_sort)
-# tail(df_sort)
+setwd("D:/DATA/output/ENFP_0719")
+d_activity <- read.csv("d_activity.csv")
+d_battery <- read.csv("d_battery.csv")
+d_bluetooth <- read.csv("d_bluetooth.csv")
+d_call <- read.csv("d_call.csv")
+d_location <- read.csv("d_location.csv")
+d_runapps <- read.csv("d_runapps.csv")
+d_screen <- read.csv("d_screen.csv")
+#d_search <- read.csv("d_search.csv")
+d_sms <- read.csv("d_sms.csv")
+d_wifi <- read.csv("d_wifi.csv")
+
+df_activity <- f_activity(d_activity)
+df_battery <- f_battery(d_battery)
+df_bluetooth <- f_bluetooth(d_bluetooth)
+df_call <- f_call(d_call)
+df_location <- f_location(d_location)
+df_runapps <- f_runapps(d_runapps)
+df_screen <- f_screen(d_screen)
+df_sms <- f_sms(d_sms)
+df_wifi <- f_wifi(d_wifi)
+
+df_tmp <- rbind(df_activity,df_battery,df_bluetooth,df_call,df_location,df_runapps,df_screen,df_sms,df_wifi)
+
+df_tmp$time2 <- as.Date(df_tmp$time)
+new_df <- subset(df_tmp, df_tmp$time2 >= "2014-07-01" & df_tmp$time2 <= "2014-08-30")
+
+df <- new_df[,-6]
+df_sort <- df[order(df$time),]
+
+head(df_sort)
+tail(df_sort)
 
 
+View(df_location)
+
+         
 # # 
 # # 
 # # 
