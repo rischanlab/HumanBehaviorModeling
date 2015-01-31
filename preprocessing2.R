@@ -7,6 +7,7 @@
 #preprocessing 2
 
 
+
 f_activity <- function(d_activity){
   d_activity <- d_activity[,c(3,2)]
   d_activity$type <- "activity"
@@ -48,7 +49,9 @@ f_bluetooth <- function(d_bluetooth){
   d_bluetooth$value2 <- as.character(d_bluetooth$value2)
   d_bluetooth$value3 <- as.character(d_bluetooth$value3)
   d_bluetooth$time <- as.character(d_bluetooth$time)
-  
+  library(dplyr)
+  d_bluetooth <- d_bluetooth %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
+  d_bluetooth <- d_bluetooth[c(1,2,5,3,4)]
   
   return (d_bluetooth)
   
@@ -131,6 +134,7 @@ f_sms <- function(d_sms){
   
 }
 
+
 f_wifi <- function(d_wifi){
   d_wifi <- d_wifi[,c(2,4,3,7)]
   d_wifi$type <- "wifi"
@@ -140,10 +144,16 @@ f_wifi <- function(d_wifi){
   d_wifi$value2 <- as.character(d_wifi$value2)
   d_wifi$value3 <- as.character(d_wifi$value3)
   d_wifi$time <- as.character(d_wifi$time)
+  d_wifi <- d_wifi[-which(d_wifi$value1 == ""), ]
+  library(dplyr)
+  #Aggregate values in the same time (minutes)
+  d_wifi <- d_wifi %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
+  d_wifi <- d_wifi[c(1,2,5,3,4)]
   
   return (d_wifi)
   
 }
+
 
 
 f_preprocessing2 <- function(path){
@@ -231,11 +241,16 @@ for (file in file_list){
 
 
 
-
-
+# View(df_wifi)
+# 
+# library(dplyr)
+# #Aggregate values in the same time (minutes)
+# new_bluetooth <- df_bluetooth %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
+# bluetooth <- new_bluetooth[c(1,2,5,3,4)]
+# 
 # 
 # # 
-# setwd("D:/DATA/output/ESTJ_3022")
+# setwd("D:/DATA/output/ENFP_0719")
 # d_activity <- read.csv("d_activity.csv")
 # d_battery <- read.csv("d_battery.csv")
 # d_bluetooth <- read.csv("d_bluetooth.csv")
@@ -267,6 +282,8 @@ for (file in file_list){
 # 
 # head(df_sort)
 # tail(df_sort)
+
+
 # # 
 # # 
 # # 
