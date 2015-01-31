@@ -95,7 +95,8 @@ f_location <- function(d_location){
   d_location <- na.omit(d_location)
   d_location <- d_location[,c(1,4,2,3)]
   names(d_location) <-c("time","value1","value2","value3")
-  
+  d_location$type <- "location"
+  d_location <- d_location[,c(1,5,2,3,4)]
   return (d_location)
   
 }
