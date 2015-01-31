@@ -14,7 +14,7 @@
 
 
 
-#setwd("/Volumes/RISCHAN/Dropbox/thesis/PROJECT/data/output2")
+
 # list.files()
 
 #removing duplicate data
@@ -27,7 +27,7 @@ remove_duplicate <- function(data){
 
 
 f_preprocessing3 <- function(file){
-  data <- read.csv("ENFP_0719.csv")
+  data <- read.csv(file)
   df <- data
   #head(df)
   df <- df[c(2,3,4,5,6)]
@@ -98,7 +98,9 @@ f_preprocessing3 <- function(file){
   
 }
 
-file_list <- list.files("/Volumes/RISCHAN/Dropbox/thesis/PROJECT/data/output2", full.names = TRUE)
+#setwd("D:/DATA")
+file_list <- list.files("D:/DATA/output2", full.names = TRUE)
+
 for (file in file_list){
   file_proc <- f_preprocessing3(file)
   cat(sprintf("Storing data %s to csv file.......",file))
