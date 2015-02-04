@@ -44,8 +44,6 @@ f_df_bluetooth <- function(df_bluetooth){
   library(dplyr)
   new_df_bluetooth <- df_bluetooth %>% group_by(time) %>% summarise(type=type[1], value2=value2[1], value3=value3[1], value1=toString(value1))
   df_bluetooth <- new_df_bluetooth[c(1,2,5,3,4)]
-  df_bluetooth <- df_bluetooth[-which(df_bluetooth$value1 == "NULL"), ]
-  
   return (df_bluetooth)
 }
 
@@ -84,40 +82,46 @@ f_preprocessing3 <- function(file){
   df_call <- NULL
   df_sms <- NULL
 
-  
   df <- read.csv(file)
-  #head(df)
   df <- df[c(2,3,4,5,6)]
   #removing duplicated data
   df <- remove_duplicate(df)
   
-  #Aggregate values in the same time (minutes)
-  
-  
   df_wifi <- subset(df, df$type=="wifi")
-  df_wifi <- df[!(is.na(df_wifi$value1) | df_wifi$value1==""), ]
+  df_wifi <- subset(df_wifi, df_wifi$value1 !="")
   df_wifi <- f_df_wifi(df_wifi)
-
   
   df_screen <- subset(df, df$type=="screen")
+  df_screen <- subset(df_screen, df_screen$value1=="FALSE")
+  df_screen$value1 <- "OFF"
   df_screen <- f_df_screen(df_screen)
   
+  
   df_bluetooth <- subset(df, df$type=="bluetooth")
+  df_bluetooth <- subset(df_bluetooth, df_bluetooth$value1!="NULL")
   df_bluetooth <- f_df_bluetooth(df_bluetooth)
   
+  
   df_activity <- subset(df, df$type=="activity")
+  df_activity <- subset(df_activity, df_activity$value1!="none")
   df_activity <- f_df_activity(df_activity)
+  
   
   df_runapps <- subset(df, df$type=="runapps")
   df_runapps <- f_df_runapps(df_runapps)
   
   df_battery <- subset(df, df$type=="battery")
+  df_battery <- subset(df_battery, df_battery$value1!="discharging")
+  
   
   df_location <- subset(df, df$type=="location")
   
   df_call <- subset(df, df$type=="call")
+  df_call$value1 <- paste(df_call$value2, df_call$value1)
   
   df_sms <- subset(df, df$type=="sms")
+  df_sms$value1 <- paste(df_sms$value2, df_sms$value1)
+  
   
   df <- NULL
   df <- rbind(df_activity,df_battery,df_bluetooth,df_call,df_location,df_runapps,df_screen,df_sms,df_wifi)
@@ -153,6 +157,8 @@ for (file in file_list){
 # # 
 # # # 
 # # # 
+# 
+# View(df)
 # setwd("D:/DATA/output2")
 # df <- read.csv("ENFP_0719.csv")
 # #head(df)
@@ -161,28 +167,40 @@ for (file in file_list){
 # df <- remove_duplicate(df)
 # 
 # df_wifi <- subset(df, df$type=="wifi")
+# df_wifi <- subset(df_wifi, df_wifi$value1 !="")
 # df_wifi <- f_df_wifi(df_wifi)
 # 
-# 
 # df_screen <- subset(df, df$type=="screen")
+# df_screen <- subset(df_screen, df_screen$value1=="FALSE")
+# df_screen$value1 <- "OFF"
 # df_screen <- f_df_screen(df_screen)
 # 
+# 
 # df_bluetooth <- subset(df, df$type=="bluetooth")
+# df_bluetooth <- subset(df_bluetooth, df_bluetooth$value1!="NULL")
 # df_bluetooth <- f_df_bluetooth(df_bluetooth)
 # 
+# 
 # df_activity <- subset(df, df$type=="activity")
+# df_activity <- subset(df_activity, df_activity$value1!="none")
 # df_activity <- f_df_activity(df_activity)
+# 
 # 
 # df_runapps <- subset(df, df$type=="runapps")
 # df_runapps <- f_df_runapps(df_runapps)
 # 
 # df_battery <- subset(df, df$type=="battery")
+# df_battery <- subset(df_battery, df_battery$value1!="discharging")
+# 
 # 
 # df_location <- subset(df, df$type=="location")
 # 
 # df_call <- subset(df, df$type=="call")
+# df_call$value1 <- paste(df_call$value2, df_call$value1)
 # 
 # df_sms <- subset(df, df$type=="sms")
+# df_sms$value1 <- paste(df_sms$value2, df_sms$value1)
+# 
 # 
 # df <- NULL
 # df <- rbind(df_activity,df_battery,df_bluetooth,df_call,df_location,df_runapps,df_screen,df_sms,df_wifi)
