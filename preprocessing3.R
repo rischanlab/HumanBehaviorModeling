@@ -213,15 +213,15 @@ df <- df[order(df$time),]
 df <- df[!weekdays(as.Date(df$time)) %in% c("Saturday", "Sunday"),]
 
 ## round time to nearest hour
-df$HP <- format(round(as.POSIXct(df$time), units="hours"),"%H:%M")
+df$HP <- format(round(as.POSIXct(df$time), units="hours"),"%k:%M")
 df$Weekday <- weekdays(as.Date(df$time))
 
 df <- df[,c(1,7,6,2,3)]
 names(df) <- c("Timestamp","Weekday","HP","Sensor Name","Sensor Value")
 
-#format(as.POSIXct(df$Timestamp), "%m/%d/%Y %H:%M")
+#format(as.POSIXct(df$Timestamp), "%m/%d/%Y %k:%M")
 
-df$Timestamp <- format(as.POSIXct(df$Timestamp), "%m/%d/%Y %HH:%MM")
+df$Timestamp <- format(as.POSIXct(df$Timestamp), "%m/%d/%Y %k:%M")
 
 
 write.csv(df, "data.csv",row.names=FALSE, quote = c(5))
