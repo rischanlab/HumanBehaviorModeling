@@ -137,7 +137,7 @@ f_preprocessing3 <- function(file){
   
   df <- df[,c(1,7,6,2,3)]
   names(df) <- c("Timestamp","Weekday","HP","Sensor Name","Sensor Value")
-  df$Timestamp <- format(as.POSIXct(df$Timestamp), "%m/%d/%Y %k:%M")
+  df$Timestamp <- format(as.POSIXct(df$Timestamp), "%m-%d-%Y %H:%M:%S")
   
   return (df)
   
@@ -151,7 +151,7 @@ for (file in file_list){
   cat(sprintf("Storing data %s to csv file.......",file))
   cat("\n")
   new_path <- gsub('output2', 'output3', file)
-  write.csv(file_proc, sprintf("%s",new_path),row.names=FALSE,quote =FALSE)
+  write.csv(file_proc, sprintf("%s",new_path),row.names=FALSE)
 }
 
 
@@ -161,7 +161,7 @@ for (file in file_list){
 # 
 # View(df)
 
-
+# 
 # setwd("D:/DATA/output2")
 # df <- read.csv("ENFP_0719.csv")
 # #head(df)
@@ -224,11 +224,11 @@ for (file in file_list){
 # 
 # #format(as.POSIXct(df$Timestamp), "%m/%d/%Y %k:%M")
 # 
-# df$Timestamp <- format(as.POSIXct(df$Timestamp), "%m/%d/%Y %k:%M")
+# df$Timestamp <- format(as.POSIXct(df$Timestamp), "%m-%d-%Y %H:%M:%S")
 # 
 # 
-# write.csv(df, "data.csv",row.names=FALSE, quote =FALSE)
-# 
+# write.csv(df, "data.csv",row.names=FALSE)
+
 
 
 
