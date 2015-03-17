@@ -17,7 +17,7 @@ f_sampling <- function(path){
   names(mydata) <- c("G","data")
   mydata <- mydata$data
   mydata <- as.data.frame(mydata)
-  mydata <- mydata[sample(nrow(mydata),3000),]
+  mydata <- mydata[sample(nrow(mydata),nrow(mydata)-50),]
   mydata <- as.data.frame(mydata)
   names(mydata) <- c("data")
   return (mydata)
@@ -40,7 +40,6 @@ for (path in list_test){
   new_path <- gsub('DataMiningCSVs', 'dataset', path)
   write.csv(data, sprintf("%s",new_path),row.names=FALSE)
 }
-
 
 
 
