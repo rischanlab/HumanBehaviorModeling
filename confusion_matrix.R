@@ -1,4 +1,5 @@
 
+setwd("C:\\Users\\rischan\\Documents\\thesisfiles")
 
 file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\datathesis\\test\\dataset", full.names = TRUE)
 file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\datathesis\\model\\dataset", full.names = TRUE)
@@ -20,15 +21,14 @@ f_performance_testing <- function(data_model_path, data_test_path){
 }
 
 
-
-
 for (model in model_list){
   for (test in test_list){
     result <- f_performance_testing(model,test)
-    intersect_percentage <- result$intersect
-    except_percentage <- result$except
-    final_output <- sprintf("%s/%s",intersect_percentage,except_percentage) 
-    print(paste(substring(model,57),substring(test,56), final_output,sep=","))
+    intersect_percentage <- round(result$intersect,3)
+    except_percentage <- round(result$except,3)
+    final_output <- sprintf("intersect : %s | except : %s",intersect_percentage,except_percentage) 
+    cat(print(paste(substring(model,57),substring(test,56), final_output,sep=",")),file="outfile.txt",append=TRUE,"\n")
+    print("Writing to file.......")
   }
 }
 
