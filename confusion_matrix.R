@@ -1,20 +1,16 @@
 
 
-file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\datathesis\\test\\dataset", full.names = FALSE)
-file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\datathesis\\model\\dataset", full.names = FALSE)
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\datathesis\\test\\dataset", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\datathesis\\model\\dataset", full.names = TRUE)
 
-table(file_list_model, file_list_test)
-
-model_list <- file_list_model[1:3]
-test_list <- file_list_test[1:3]
-
-table(model_list,test_list)
+model_list <- file_list_model
+test_list <- file_list_test
 
 
-f_performance_testing <- function(data_model, data_test){
+f_performance_testing <- function(data_model_path, data_test_path){
   library(dplyr)
-  data_model <- read.csv(data_model, header=TRUE)
-  data_test <- read.csv(data_test, header=TRUE)
+  data_model <- read.csv(data_model_path, header=TRUE)
+  data_test <- read.csv(data_test_path, header=TRUE)
   intersect <- semi_join(data_test,data_model)
   except <- anti_join(data_test,data_model)
   except_percentage <- (nrow(except)/nrow(data_test))*100
@@ -25,11 +21,16 @@ f_performance_testing <- function(data_model, data_test){
 
 
 
+
 for (model in model_list){
   for (test in test_list){
-    print(paste(model,test,sep=","))
+    result <- f_performance_testing(model,test)
+    intersect_percentage <- result$intersect
+    except_percentage <- result$except
+    final_output <- sprintf("%s/%s",intersect_percentage,except_percentage) 
+    print(paste(substring(model,57),substring(test,56), final_output,sep=","))
   }
 }
 
-?table
+
 
