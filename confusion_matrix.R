@@ -26,11 +26,17 @@ for (model in model_list){
     result <- f_performance_testing(model,test)
     intersect_percentage <- round(result$intersect,3)
     except_percentage <- round(result$except,3)
-    final_output <- sprintf("intersect : %s | except : %s",intersect_percentage,except_percentage) 
-    cat(print(paste(substring(model,57),substring(test,56), final_output,sep=",")),file="outfile.txt",append=TRUE,"\n")
+    final_output <- sprintf("%s/%s",intersect_percentage,except_percentage) 
+    cat(print(paste(substring(model,57),substring(test,56), final_output,sep=",")),file="outfile4.txt",append=TRUE,"\n")
     print("Writing to file.......")
   }
 }
 
 
 
+mydata <- read.csv("result.txt", header = FALSE)
+head(mydata)
+out3 <- reshape(mydata, direction = "wide", idvar = "V1", timevar = "V2")
+
+?write.csv
+write.csv(out3, file="result.csv")
