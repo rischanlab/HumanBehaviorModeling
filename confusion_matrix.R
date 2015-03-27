@@ -2,10 +2,17 @@
 
 
 
-setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\testing")
+setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location")
 
-file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\test\\dataset", full.names = TRUE)
-file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\model\\dataset", full.names = TRUE)
+# #All of Data
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\test\\dataset", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\model\\dataset", full.names = TRUE)
+
+#Without Location
+
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location\\test\\dataset", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location\\model\\dataset", full.names = TRUE)
+
 
 model_list <- file_list_model
 test_list <- file_list_test
@@ -32,16 +39,26 @@ for (model in model_list){
     except_percentage <- round(result$except,3)
     #final_output <- sprintf("%s/%s",intersect_percentage,except_percentage) 
     final_output <- sprintf("%s",intersect_percentage) 
-    cat(print(paste(substring(model,57),substring(test,56), final_output,sep=",")),file="output-small.txt",append=TRUE,"\n")
+    cat(print(paste(basename(model),basename(test), final_output,sep=",")),file="output.txt",append=TRUE,"\n")
     print("Writing to file.......")
   }
 }
 
 
 
-mydata <- read.csv("output-small.txt", header = FALSE)
+mydata <- read.csv("output.txt", header = FALSE)
 head(mydata)
-names(mydata) <- c("model","test","result")
+names(mydata) <- c("model","test","t")
 out <- reshape(mydata, direction = "wide", idvar = "model", timevar = "test")
 
-write.csv(out, file="output-small.csv")
+write.csv(out, file="output.csv")
+
+
+
+
+new_df <- subset(mydata, mydata$test==mydata$model)
+head(new_df)
+
+out <- reshape(new_df, direction = "wide", idvar = "model", timevar = "test")
+
+write.csv(new_df, file="data_diagonal.csv")
