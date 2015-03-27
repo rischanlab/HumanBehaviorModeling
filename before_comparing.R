@@ -8,9 +8,14 @@
 i=1
 index <- seq(1,111, by=i+2)
 
+# ## All of Data
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\test\\DataMiningCSVs", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\model\\DataMiningCSVs", full.names = TRUE)
 
-file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\test\\DataMiningCSVs", full.names = TRUE)
-file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\model\\DataMiningCSVs", full.names = TRUE)
+## Without Location
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location\\test\\DataMiningCSVs", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location\\model\\DataMiningCSVs", full.names = TRUE)
+
 
 list_test <- file_list_test[c(index)]
 list_model <- file_list_model[c(index)]
