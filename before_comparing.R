@@ -1,23 +1,39 @@
 
+## Coded by Rischan Mafrur
+## R languange
+## For Thesis Purpose
+## Processing before evaluation
 
 
+i=1
 index <- seq(1,111, by=i+2)
 
 
-file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\datathesis\\test\\DataMiningCSVs", full.names = TRUE)
-file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\datathesis\\model\\DataMiningCSVs", full.names = TRUE)
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\test\\DataMiningCSVs", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\model\\DataMiningCSVs", full.names = TRUE)
 
 list_test <- file_list_test[c(index)]
 list_model <- file_list_model[c(index)]
 
 
 
-f_sampling <- function(path){
+f_model_sampling <- function(path){
   mydata <- read.csv(path, header = FALSE)
   names(mydata) <- c("G","data")
   mydata <- mydata$data
   mydata <- as.data.frame(mydata)
-  mydata <- mydata[sample(nrow(mydata),nrow(mydata)-50),]
+  mydata <- mydata[sample(nrow(mydata),nrow(mydata)-10),]
+  mydata <- as.data.frame(mydata)
+  names(mydata) <- c("data")
+  return (mydata)
+}
+
+f_test_sampling <- function(path){
+  mydata <- read.csv(path, header = FALSE)
+  names(mydata) <- c("G","data")
+  mydata <- mydata$data
+  mydata <- as.data.frame(mydata)
+  mydata <- mydata[sample(nrow(mydata),nrow(mydata)),]
   mydata <- as.data.frame(mydata)
   names(mydata) <- c("data")
   return (mydata)
@@ -26,7 +42,7 @@ f_sampling <- function(path){
 
 
 for (path in list_model){
-  data <- f_sampling(path)
+  data <- f_model_sampling(path)
   cat(sprintf("Storing data %s to csv file.......",path))
   cat("\n")
   new_path <- gsub('DataMiningCSVs', 'dataset', path)
@@ -34,7 +50,7 @@ for (path in list_model){
 }
 
 for (path in list_test){
-  data <- f_sampling(path)
+  data <- f_test_sampling(path)
   cat(sprintf("Storing data %s to csv file.......",path))
   cat("\n")
   new_path <- gsub('DataMiningCSVs', 'dataset', path)

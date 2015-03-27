@@ -26,23 +26,24 @@
 
 f_split <- function(path){
   df <- read.csv(path)
-  df1 <- subset(df, as.Date(df$Timestamp,"%m-%d-%Y %H:%M:%S") <= "2014-07-30" )
-  df2 <- subset(df, as.Date(df$Timestamp,"%m-%d-%Y %H:%M:%S") >= "2014-08-1" )
+  df1 <- subset(df, (as.Date(df$Timestamp,"%m-%d-%Y %H:%M:%S") <= "2014-07-28")) 
+  df2 <- subset(df, (as.Date(df$Timestamp,"%m-%d-%Y %H:%M:%S") >= "2014-07-29") )
   return(list("df1"=df1,"df2"=df2))
 }
 
+#df1 <- subset(df, (as.Date(df$Timestamp,"%m-%d-%Y %H:%M:%S") >= "2014-08-1") & (as.Date(df$Timestamp,"%m-%d-%Y %H:%M:%S") <= "2014-07-30") )
 
 
 # setwd("D:/DATA")
 
-file_list <- list.files("D:/DATA/output3", full.names = TRUE)
+file_list <- list.files("D:/Dropbox/thesis/PROJECT/data/testing/CSVs", full.names = TRUE)
 
 for (file in file_list){
   data_split <- f_split(file)
   cat(sprintf("Storing data %s to csv file.......",file))
   cat("\n")
-  new_path1 <- gsub('output3', 'omodel', file)
-  new_path2 <- gsub('output3', 'otest', file)
+  new_path1 <- gsub('CSVs', 'pmodel', file)
+  new_path2 <- gsub('CSVs', 'ptest', file)
   write.csv(data_split$df1, sprintf("%s",new_path1),row.names=FALSE)
   write.csv(data_split$df2, sprintf("%s",new_path2),row.names=FALSE)
 }

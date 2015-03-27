@@ -1,11 +1,15 @@
 
-setwd("C:\\Users\\rischan\\Documents\\thesisfiles")
 
-file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\datathesis\\test\\dataset", full.names = TRUE)
-file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\datathesis\\model\\dataset", full.names = TRUE)
+
+
+setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\testing")
+
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\test\\dataset", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\model\\dataset", full.names = TRUE)
 
 model_list <- file_list_model
 test_list <- file_list_test
+#[c(1,2,16,17,28,6,9,10,15,14)]
 
 
 f_performance_testing <- function(data_model_path, data_test_path){
@@ -26,17 +30,18 @@ for (model in model_list){
     result <- f_performance_testing(model,test)
     intersect_percentage <- round(result$intersect,3)
     except_percentage <- round(result$except,3)
-    final_output <- sprintf("%s/%s",intersect_percentage,except_percentage) 
-    cat(print(paste(substring(model,57),substring(test,56), final_output,sep=",")),file="outfile4.txt",append=TRUE,"\n")
+    #final_output <- sprintf("%s/%s",intersect_percentage,except_percentage) 
+    final_output <- sprintf("%s",intersect_percentage) 
+    cat(print(paste(substring(model,57),substring(test,56), final_output,sep=",")),file="output-small.txt",append=TRUE,"\n")
     print("Writing to file.......")
   }
 }
 
 
 
-mydata <- read.csv("result.txt", header = FALSE)
+mydata <- read.csv("output-small.txt", header = FALSE)
 head(mydata)
-out3 <- reshape(mydata, direction = "wide", idvar = "V1", timevar = "V2")
+names(mydata) <- c("model","test","result")
+out <- reshape(mydata, direction = "wide", idvar = "model", timevar = "test")
 
-?write.csv
-write.csv(out3, file="result.csv")
+write.csv(out, file="output-small.csv")

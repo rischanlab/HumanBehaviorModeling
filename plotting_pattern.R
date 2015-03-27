@@ -17,7 +17,7 @@ library(ggplot2)
 library(scales)
 
 
-test = fread("ENFP_0719.csv")  # the data file is in working directory
+test = fread("INTP_9712.csv")  # the data file is in working directory
 test$time2 <- as.Date(test$time)
 test <- subset(test, test$time2 >= "2014-07-01" & test$time2 <= "2014-07-05")
 
