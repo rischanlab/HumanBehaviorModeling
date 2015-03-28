@@ -17,9 +17,28 @@ index <- seq(1,111, by=i+2)
 # file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location\\model\\DataMiningCSVs", full.names = TRUE)
 
 ##Without Wifi
-file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi\\test\\DataMiningCSVs", full.names = TRUE)
-file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi\\model\\DataMiningCSVs", full.names = TRUE)
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi\\test\\DataMiningCSVs", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi\\model\\DataMiningCSVs", full.names = TRUE)
 
+##Without Activity
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity\\test\\DataMiningCSVs", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity\\model\\DataMiningCSVs", full.names = TRUE)
+
+##Without Run apps
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_apps\\test\\DataMiningCSVs", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_apps\\model\\DataMiningCSVs", full.names = TRUE)
+
+##Without Battery
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_battery\\test\\DataMiningCSVs", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_battery\\model\\DataMiningCSVs", full.names = TRUE)
+
+##Without Call
+#file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_call\\test\\DataMiningCSVs", full.names = TRUE)
+#file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_call\\model\\DataMiningCSVs", full.names = TRUE)
+
+##Without SMS
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\test\\DataMiningCSVs", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\model\\DataMiningCSVs", full.names = TRUE)
 
 list_test <- file_list_test[c(index)]
 list_model <- file_list_model[c(index)]
