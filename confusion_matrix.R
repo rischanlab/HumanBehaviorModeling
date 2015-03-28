@@ -2,16 +2,16 @@
 
 
 
-setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location")
+setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\all_data")
 
 # #All of Data
-# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\test\\dataset", full.names = TRUE)
-# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\testing\\model\\dataset", full.names = TRUE)
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\all_data\\test\\dataset", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\all_data\\model\\dataset", full.names = TRUE)
 
 #Without Location
-
-file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location\\test\\dataset", full.names = TRUE)
-file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location\\model\\dataset", full.names = TRUE)
+# 
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location\\test\\dataset", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location\\model\\dataset", full.names = TRUE)
 
 
 model_list <- file_list_model
@@ -59,6 +59,6 @@ write.csv(out, file="output.csv")
 new_df <- subset(mydata, mydata$test==mydata$model)
 head(new_df)
 
-out <- reshape(new_df, direction = "wide", idvar = "model", timevar = "test")
+#out <- reshape(new_df, direction = "wide", idvar = "model", timevar = "test")
 
 write.csv(new_df, file="data_diagonal.csv")
