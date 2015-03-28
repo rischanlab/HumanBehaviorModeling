@@ -2,7 +2,7 @@
 
 
 
-setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\all_data")
+setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi")
 
 # #All of Data
 file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\all_data\\test\\dataset", full.names = TRUE)
@@ -12,6 +12,12 @@ file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-resu
 # 
 # file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location\\test\\dataset", full.names = TRUE)
 # file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_location\\model\\dataset", full.names = TRUE)
+
+
+#WithoutWifi
+# 
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi\\test\\dataset", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi\\model\\dataset", full.names = TRUE)
 
 
 model_list <- file_list_model

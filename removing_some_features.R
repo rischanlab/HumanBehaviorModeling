@@ -36,3 +36,9 @@ for (test in test_list){
   new_path <- gsub('CSVs', 'CSV_without_location', test)
   write.csv(data, sprintf("%s",new_path),row.names=FALSE)
 }
+
+
+
+#Without Location and Wifi
+
+#etc... 
