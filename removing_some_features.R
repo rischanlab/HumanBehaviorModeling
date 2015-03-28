@@ -71,3 +71,143 @@ for (test in test_list){
   write.csv(data, sprintf("%s",new_path),row.names=FALSE)
 }
 
+
+
+#Without Wifi
+
+
+f_without_wifi <- function(path){
+  data <- read.csv(path, header =TRUE)
+  row_sub <- apply(data,1,function(row) all(row !="wifi"))
+  new_data <- data[row_sub,]
+  return (new_data)
+}
+
+for (model in model_list){
+  data <- f_without_wifi(model)
+  cat(sprintf("Storing data %s to csv file.......",model))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', model)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+for (test in test_list){
+  data <- f_without_wifi(test)
+  cat(sprintf("Storing data %s to csv file.......",test))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', test)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+
+
+#Without Activity
+
+
+f_without_activity <- function(path){
+  data <- read.csv(path, header =TRUE)
+  row_sub <- apply(data,1,function(row) all(row !="activity"))
+  new_data <- data[row_sub,]
+  return (new_data)
+}
+
+for (model in model_list){
+  data <- f_without_activity(model)
+  cat(sprintf("Storing data %s to csv file.......",model))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', model)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+for (test in test_list){
+  data <- f_without_activity(test)
+  cat(sprintf("Storing data %s to csv file.......",test))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', test)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+
+
+#Without Battery
+
+
+f_without_battery <- function(path){
+  data <- read.csv(path, header =TRUE)
+  row_sub <- apply(data,1,function(row) all(row !="battery"))
+  new_data <- data[row_sub,]
+  return (new_data)
+}
+
+for (model in model_list){
+  data <- f_without_battery(model)
+  cat(sprintf("Storing data %s to csv file.......",model))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', model)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+for (test in test_list){
+  data <- f_without_battery(test)
+  cat(sprintf("Storing data %s to csv file.......",test))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', test)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+
+#Without Run Apps
+
+
+f_without_runapps <- function(path){
+  data <- read.csv(path, header =TRUE)
+  row_sub <- apply(data,1,function(row) all(row !="runapps"))
+  new_data <- data[row_sub,]
+  return (new_data)
+}
+
+for (model in model_list){
+  data <- f_without_runapps(model)
+  cat(sprintf("Storing data %s to csv file.......",model))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', model)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+for (test in test_list){
+  data <- f_without_runapps(test)
+  cat(sprintf("Storing data %s to csv file.......",test))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', test)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+
+
+#Without Call
+
+
+f_without_call <- function(path){
+  data <- read.csv(path, header =TRUE)
+  row_sub <- apply(data,1,function(row) all(row !="call"))
+  new_data <- data[row_sub,]
+  return (new_data)
+}
+
+for (model in model_list){
+  data <- f_without_call(model)
+  cat(sprintf("Storing data %s to csv file.......",model))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', model)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+for (test in test_list){
+  data <- f_without_call(test)
+  cat(sprintf("Storing data %s to csv file.......",test))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', test)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+
