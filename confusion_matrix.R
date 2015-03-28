@@ -2,11 +2,11 @@
 
 
 
-setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi")
-
-# #All of Data
-file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\all_data\\test\\dataset", full.names = TRUE)
-file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\all_data\\model\\dataset", full.names = TRUE)
+# setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi")
+# 
+# # #All of Data
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\all_data\\test\\dataset", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\all_data\\model\\dataset", full.names = TRUE)
 
 #Without Location
 # 
@@ -16,8 +16,36 @@ file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-resu
 
 #WithoutWifi
 # 
-file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi\\test\\dataset", full.names = TRUE)
-file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi\\model\\dataset", full.names = TRUE)
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi\\test\\dataset", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_wifi\\model\\dataset", full.names = TRUE)
+# 
+
+#Without Activity
+# setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity")
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity\\test\\dataset", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity\\model\\dataset", full.names = TRUE)
+
+
+#Without Run Apps
+# setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_apps")
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_apps\\test\\dataset", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_apps\\model\\dataset", full.names = TRUE)
+
+
+#Without Run Battery
+# setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_battery")
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_battery\\test\\dataset", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_battery\\model\\dataset", full.names = TRUE)
+
+#Without Call
+# setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_call")
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_call\\test\\dataset", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_call\\model\\dataset", full.names = TRUE)
+
+#Without SMS
+setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms")
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\test\\dataset", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\model\\dataset", full.names = TRUE)
 
 
 model_list <- file_list_model
