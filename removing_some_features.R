@@ -241,3 +241,65 @@ for (test in test_list){
   write.csv(data, sprintf("%s",new_path),row.names=FALSE)
 }
 
+
+#Without Activity and CALL
+setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity_call\\model\\CSVs")
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity_call\\test\\CSVs_old", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity_call\\model\\CSVs_old", full.names = TRUE)
+model_list <- file_list_model
+test_list <- file_list_test
+
+f_without_activity_call <- function(path){
+  data <- read.csv(path, header =TRUE)
+  row_sub <- apply(data,1,function(row) all((row !="call") & (row !="activity")))
+  new_data <- data[row_sub,]
+  return (new_data)
+}
+
+for (model in model_list){
+  data <- f_without_activity_call(model)
+  cat(sprintf("Storing data %s to csv file.......",model))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', model)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+for (test in test_list){
+  data <- f_without_activity_call(test)
+  cat(sprintf("Storing data %s to csv file.......",test))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', test)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+
+
+#Without Bluetooth and SMS
+setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_bluetooth_sms\\model\\CSVs")
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_bluetooth_sms\\test\\CSVs_old", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_bluetooth_sms\\model\\CSVs_old", full.names = TRUE)
+model_list <- file_list_model
+test_list <- file_list_test
+
+f_without_without_bluetooth_sms <- function(path){
+  data <- read.csv(path, header =TRUE)
+  row_sub <- apply(data,1,function(row) all((row !="bluetooth") & (row !="sms")))
+  new_data <- data[row_sub,]
+  return (new_data)
+}
+
+for (model in model_list){
+  data <- f_without_without_bluetooth_sms(model)
+  cat(sprintf("Storing data %s to csv file.......",model))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', model)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
+
+for (test in test_list){
+  data <- f_without_without_bluetooth_sms(test)
+  cat(sprintf("Storing data %s to csv file.......",test))
+  cat("\n")
+  new_path <- gsub('CSVs_old', 'CSVs', test)
+  write.csv(data, sprintf("%s",new_path),row.names=FALSE)
+}
