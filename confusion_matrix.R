@@ -43,10 +43,20 @@
 # file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_call\\model\\dataset", full.names = TRUE)
 
 #Without SMS
-setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms")
-file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\test\\dataset", full.names = TRUE)
-file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\model\\dataset", full.names = TRUE)
+# setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms")
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\test\\dataset", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\model\\dataset", full.names = TRUE)
 
+
+#Without Activity and Call
+# setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity_call")
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity_call\\test\\dataset", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity_call\\model\\dataset", full.names = TRUE)
+
+#Without Bluetooth and SMS
+setwd("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_bluetooth_sms")
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_bluetooth_sms\\test\\dataset", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_bluetooth_sms\\model\\dataset", full.names = TRUE)
 
 model_list <- file_list_model
 test_list <- file_list_test

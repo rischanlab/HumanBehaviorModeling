@@ -37,8 +37,16 @@ index <- seq(1,111, by=i+2)
 #file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_call\\model\\DataMiningCSVs", full.names = TRUE)
 
 ##Without SMS
-file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\test\\DataMiningCSVs", full.names = TRUE)
-file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\model\\DataMiningCSVs", full.names = TRUE)
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\test\\DataMiningCSVs", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_sms\\model\\DataMiningCSVs", full.names = TRUE)
+
+##Without Activity and Call
+# file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity_call\\test\\DataMiningCSVs", full.names = TRUE)
+# file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_activity_call\\model\\DataMiningCSVs", full.names = TRUE)
+
+##Without Bluetooth and SMS
+file_list_test <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_bluetooth_sms\\test\\DataMiningCSVs", full.names = TRUE)
+file_list_model <- list.files("D:\\Dropbox\\thesis\\PROJECT\\data\\research-result\\without_bluetooth_sms\\model\\DataMiningCSVs", full.names = TRUE)
 
 list_test <- file_list_test[c(index)]
 list_model <- file_list_model[c(index)]
